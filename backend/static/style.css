@@ -1,0 +1,11 @@
+.newsletter-widget {
+    border: 1px solid;
+    margin: 12px;
+    padding: 18px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.newsletter-widget--email-input-label {
+    margin: 4px;
+}

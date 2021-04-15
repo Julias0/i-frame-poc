@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Widget Shower</title>
+        <script>
+            window.onload = function() {
+                window.addEventListener('message', function(e) {
+                    var message = e.data;
+                    console.log('parent', message);
+                }); 
+
+                // Get the window displayed in the iframe.
+                var receiver = document.getElementById('newsletter-iframe').contentWindow;
+
+                // Get a reference to the 'Send Message' button.
+                var btn = document.getElementById('send');
+
+                // A function to handle sending messages.
+                function sendMessage(e) {
+                    // Prevent any default browser behaviour.
+                    e.preventDefault();
+
+                    receiver.postMessage('Hello There!', 'http://127.0.0.1:5000');
+                }
+
+                // Add an event listener that will execute the sendMessage() function
+                // when the send button is clicked.
+                btn.addEventListener('click', sendMessage);
+            }
+        </script>
+        
+    </head>
+    <body>
+        <h1>
+            Blog
+        </h1>
+        <div>
+            <button id="send">
+                Send notif
+            </button>
+        </div>
+        <iframe style="height: 300px;" id="newsletter-iframe" src="http://127.0.0.1:5000/widget.html" frameborder="0"></iframe>
+    </body>
+</html>

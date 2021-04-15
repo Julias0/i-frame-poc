@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+
+<script>
+  window.onload = function() {
+    window.addEventListener('message', function(e) {
+      var message = e.data;
+      console.log('child', message);
+    });  
+
+    // Get the window displayed in the iframe.
+    var receiver = window.parent
+
+    // Get a reference to the 'Send Message' button.
+    var btn = document.getElementById('send');
+
+    // A function to handle sending messages.
+    function sendMessage(e) {
+        // Prevent any default browser behaviour.
+        e.preventDefault();
+
+        receiver.postMessage('Hi There!', 'http://127.0.0.1:8080');
+    }
+
+    // Add an event listener that will execute the sendMessage() function
+    // when the send button is clicked.
+    btn.addEventListener('click', sendMessage);
+  }
+  
+</script>
+
+<div class="card m-4">
+  <div class="card-content">
+    <form class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center" action="sign_up"
+      method="post">
+      <div class="field">
+        <div class="control">
+          <input class="input" type="text" placeholder="Enter your email here" name="user_email">
+        </div>
+        <p class="help">Awesome content straight into your inbox</p>
+      </div>
+      <div class="buttons">
+        <button class="button is-primary" type="submit">
+          Sign up for newsletter
+        </button>
+        <button id="send" class="button is-secondary" type="submit">
+          Send Notif
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
